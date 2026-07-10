@@ -1,16 +1,27 @@
 import { useState } from 'react'
+import { FeedbackMessage } from './FeedbackMessage'
+import type { Feedback } from '../../types/game'
 
 type WordFormProps = {
-  onSubmitWord: (word: string) => void
+  feedback: Feedback
+  isSubmitting: boolean
+  onSubmitWord: (word: string) => Promise<boolean>
 }
 
-export function WordForm({ onSubmitWord }: WordFormProps) {
+export function WordForm({
+  feedback,
+  isSubmitting,
+  onSubmitWord,
+}: WordFormProps) {
   const [word, setWord] = useState('')
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    onSubmitWord(word)
-    setWord('')
+    const wasAdded = await onSubmitWord(word)
+
+    if (wasAdded) {
+      setWord('')
+    }
   }
 
   return (
@@ -22,6 +33,7 @@ export function WordForm({ onSubmitWord }: WordFormProps) {
       <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
         <input
           className="min-w-0 rounded-xl border border-[#dfe3ec] bg-white px-4 py-3 text-ink outline-none transition focus:border-violet-main focus:ring-4 focus:ring-violet-soft"
+          disabled={isSubmitting}
           id="word"
           name="word"
           placeholder="Ej: casa"
@@ -31,16 +43,15 @@ export function WordForm({ onSubmitWord }: WordFormProps) {
           onChange={(event) => setWord(event.target.value)}
         />
         <button
-          className="rounded-xl bg-violet-main px-6 py-3 font-black text-white transition hover:bg-violet-dark"
+          className="rounded-xl bg-violet-main px-6 py-3 font-black text-white transition hover:bg-violet-dark disabled:cursor-not-allowed disabled:bg-[#bda7ff]"
+          disabled={isSubmitting}
           type="submit"
         >
-          Enviar
+          {isSubmitting ? 'Validando...' : 'Enviar'}
         </button>
       </div>
 
-      <p className="mt-3 rounded-xl border border-[#dfe3ec] bg-[#f8fafc] px-4 py-3 text-sm font-semibold text-muted">
-        La primera palabra puede ser cualquiera.
-      </p>
+      <FeedbackMessage feedback={feedback} />
     </form>
   )
 }

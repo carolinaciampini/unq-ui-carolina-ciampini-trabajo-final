@@ -4,12 +4,14 @@ import type { Feedback } from '../../types/game'
 
 type WordFormProps = {
   feedback: Feedback
+  isDisabled: boolean
   isSubmitting: boolean
   onSubmitWord: (word: string) => Promise<boolean>
 }
 
 export function WordForm({
   feedback,
+  isDisabled,
   isSubmitting,
   onSubmitWord,
 }: WordFormProps) {
@@ -33,7 +35,7 @@ export function WordForm({
       <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
         <input
           className="min-w-0 rounded-xl border border-[#dfe3ec] bg-white px-4 py-3 text-ink outline-none transition focus:border-violet-main focus:ring-4 focus:ring-violet-soft"
-          disabled={isSubmitting}
+          disabled={isDisabled || isSubmitting}
           id="word"
           name="word"
           placeholder="Ej: casa"
@@ -44,7 +46,7 @@ export function WordForm({
         />
         <button
           className="rounded-xl bg-violet-main px-6 py-3 font-black text-white transition hover:bg-violet-dark disabled:cursor-not-allowed disabled:bg-[#bda7ff]"
-          disabled={isSubmitting}
+          disabled={isDisabled || isSubmitting}
           type="submit"
         >
           {isSubmitting ? 'Validando...' : 'Enviar'}

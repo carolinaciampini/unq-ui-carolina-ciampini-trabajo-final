@@ -1,6 +1,20 @@
-export function WordForm() {
+import { useState } from 'react'
+
+type WordFormProps = {
+  onSubmitWord: (word: string) => void
+}
+
+export function WordForm({ onSubmitWord }: WordFormProps) {
+  const [word, setWord] = useState('')
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    onSubmitWord(word)
+    setWord('')
+  }
+
   return (
-    <form className="my-8">
+    <form className="my-8" onSubmit={handleSubmit}>
       <label className="mb-2 block font-extrabold text-ink" htmlFor="word">
         Ingresa una palabra
       </label>
@@ -13,6 +27,8 @@ export function WordForm() {
           placeholder="Ej: casa"
           type="text"
           autoComplete="off"
+          value={word}
+          onChange={(event) => setWord(event.target.value)}
         />
         <button
           className="rounded-xl bg-violet-main px-6 py-3 font-black text-white transition hover:bg-violet-dark"

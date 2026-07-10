@@ -9,25 +9,25 @@ type GameStatsProps = {
 export function GameStats({ seconds, score, wordsCount }: GameStatsProps) {
   return (
     <section className="grid gap-3 sm:grid-cols-3" aria-label="Estado de la partida">
-      <article className="grid min-h-24 justify-items-center gap-1 rounded-2xl bg-[#f8f6fd] px-3 py-4">
-        <HiOutlineClock className="text-2xl text-[#ff6b6b]" aria-hidden="true" />
-        <strong className="text-2xl font-black leading-none text-ink">{seconds}s</strong>
+      <article className="grid min-h-28 justify-items-center gap-1 rounded-xl bg-[#f8f6fd] px-3 py-4">
+        <HiOutlineClock className="text-2xl text-violet-main" aria-hidden="true" />
+        <strong className="text-3xl font-black leading-none text-ink">{seconds}s</strong>
         <span className="text-xs font-extrabold uppercase tracking-wide text-[#6c7280]">
           Tiempo
         </span>
       </article>
 
-      <article className="grid min-h-24 justify-items-center gap-1 rounded-2xl bg-[#f8f6fd] px-3 py-4">
+      <article className="grid min-h-28 justify-items-center gap-1 rounded-xl bg-[#f8f6fd] px-3 py-4">
         <HiOutlineStar className="text-2xl text-violet-main" aria-hidden="true" />
-        <strong className="text-2xl font-black leading-none text-ink">{score}</strong>
+        <strong className="text-xl font-black leading-none text-ink">{score}</strong>
         <span className="text-xs font-extrabold uppercase tracking-wide text-[#6c7280]">
           Puntos
         </span>
       </article>
 
-      <article className="grid min-h-24 justify-items-center gap-1 rounded-2xl bg-[#f8f6fd] px-3 py-4">
+      <article className="grid min-h-28 justify-items-center gap-1 rounded-xl bg-[#f8f6fd] px-3 py-4">
         <HiOutlineHashtag className="text-2xl text-violet-main" aria-hidden="true" />
-        <strong className="text-2xl font-black leading-none text-ink">
+        <strong className="text-xl font-black leading-none text-ink">
           {wordsCount}
         </strong>
         <span className="text-xs font-extrabold uppercase tracking-wide text-[#6c7280]">

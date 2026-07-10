@@ -16,7 +16,7 @@ export function WordChain({ words }: WordChainProps) {
       </h2>
 
       {words.length === 0 ? (
-        <div className="grid min-h-32 place-items-center rounded-[22px] border-2 border-dashed border-[#dfe3ec] p-6 text-center">
+        <div className="grid min-h-32 place-items-center rounded-xl border-2 border-dashed border-[#dfe3ec] p-6 text-center">
           <HiOutlineLink className="text-4xl text-violet-light" aria-hidden="true" />
           <p className="m-0 text-muted">
             Todavia no ingresaste palabras. Empeza con la primera.

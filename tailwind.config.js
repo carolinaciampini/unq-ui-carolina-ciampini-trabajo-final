@@ -14,8 +14,7 @@ export default {
         },
       },
       boxShadow: {
-        panel: '0 18px 42px rgba(64, 44, 110, 0.14)',
-        button: '0 12px 20px rgba(104, 50, 219, 0.3)',
+        panel: '0 12px 28px rgba(64, 44, 110, 0.08)',
       },
     },
   },

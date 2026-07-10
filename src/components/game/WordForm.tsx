@@ -7,7 +7,7 @@ export function WordForm() {
 
       <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
         <input
-          className="min-w-0 rounded-2xl border border-[#dfe3ec] bg-white px-4 py-3 text-ink outline-none transition focus:border-violet-main focus:ring-4 focus:ring-violet-soft"
+          className="min-w-0 rounded-xl border border-[#dfe3ec] bg-white px-4 py-3 text-ink outline-none transition focus:border-violet-main focus:ring-4 focus:ring-violet-soft"
           id="word"
           name="word"
           placeholder="Ej: casa"
@@ -15,14 +15,14 @@ export function WordForm() {
           autoComplete="off"
         />
         <button
-          className="rounded-2xl bg-violet-main px-6 py-3 font-black text-white shadow-button transition hover:bg-violet-dark"
+          className="rounded-xl bg-violet-main px-6 py-3 font-black text-white transition hover:bg-violet-dark"
           type="submit"
         >
           Enviar
         </button>
       </div>
 
-      <p className="mt-3 rounded-2xl bg-violet-soft px-4 py-3 text-sm font-semibold text-muted">
+      <p className="mt-3 rounded-xl border border-[#dfe3ec] bg-[#f8fafc] px-4 py-3 text-sm font-semibold text-muted">
         La primera palabra puede ser cualquiera.
       </p>
     </form>

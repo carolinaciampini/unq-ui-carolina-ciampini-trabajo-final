@@ -9,16 +9,12 @@ import {
 } from '../utils/gameRules'
 import { normalizeWord } from '../utils/normalizeWord'
 
-const initialFeedback: Feedback = {
-  type: 'info',
-  message: 'La primera palabra puede ser cualquiera.',
-}
-
 const TURN_SECONDS = 15
+const FEEDBACK_DURATION = 3000
 
 export function useWordGame() {
   const [words, setWords] = useState<string[]>([])
-  const [feedback, setFeedback] = useState<Feedback>(initialFeedback)
+  const [feedback, setFeedback] = useState<Feedback | null>(null)
   const [gameStatus, setGameStatus] = useState<GameStatus>('idle')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [seconds, setSeconds] = useState(TURN_SECONDS)
@@ -40,10 +36,6 @@ export function useWordGame() {
         if (currentSeconds <= 1) {
           window.clearInterval(intervalId)
           setGameStatus('finished')
-          setFeedback({
-            type: 'info',
-            message: 'Se termino el tiempo.',
-          })
           return 0
         }
 
@@ -53,6 +45,18 @@ export function useWordGame() {
 
     return () => window.clearInterval(intervalId)
   }, [gameStatus])
+
+  useEffect(() => {
+    if (feedback === null) {
+      return
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setFeedback(null)
+    }, FEEDBACK_DURATION)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [feedback])
 
   const submitWord = async (word: string) => {
     if (gameStatus === 'finished') {
@@ -125,7 +129,7 @@ export function useWordGame() {
 
   const restartGame = () => {
     setWords([])
-    setFeedback(initialFeedback)
+    setFeedback(null)
     setGameStatus('idle')
     setIsSubmitting(false)
     setSeconds(TURN_SECONDS)

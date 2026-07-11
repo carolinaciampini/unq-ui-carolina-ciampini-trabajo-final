@@ -3,7 +3,7 @@ import { FeedbackMessage } from './FeedbackMessage'
 import type { Feedback } from '../../types/game'
 
 type WordFormProps = {
-  feedback: Feedback
+  feedback: Feedback | null
   isDisabled: boolean
   isSubmitting: boolean
   onSubmitWord: (word: string) => Promise<boolean>
@@ -34,7 +34,7 @@ export function WordForm({
 
       <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
         <input
-          className="min-w-0 rounded-xl border border-[#dfe3ec] bg-white px-4 py-3 text-ink outline-none transition focus:border-violet-main focus:ring-4 focus:ring-violet-soft"
+          className="min-w-0 rounded-xl border border-[#d8e1de] bg-white px-4 py-3 text-ink outline-none transition focus:border-teal-main focus:ring-4 focus:ring-teal-soft"
           disabled={isDisabled || isSubmitting}
           id="word"
           name="word"
@@ -45,7 +45,7 @@ export function WordForm({
           onChange={(event) => setWord(event.target.value)}
         />
         <button
-          className="rounded-xl bg-violet-main px-6 py-3 font-black text-white transition hover:bg-violet-dark disabled:cursor-not-allowed disabled:bg-[#bda7ff]"
+          className="rounded-xl bg-teal-main px-6 py-3 font-black text-white transition hover:bg-teal-dark disabled:cursor-not-allowed disabled:bg-teal-light"
           disabled={isDisabled || isSubmitting}
           type="submit"
         >

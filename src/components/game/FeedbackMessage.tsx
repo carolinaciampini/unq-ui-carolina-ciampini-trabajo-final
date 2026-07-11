@@ -1,7 +1,7 @@
 import type { Feedback } from '../../types/game'
 
 type FeedbackMessageProps = {
-  feedback: Feedback
+  feedback: Feedback | null
 }
 
 const feedbackStyles: Record<Feedback['type'], string> = {
@@ -11,9 +11,13 @@ const feedbackStyles: Record<Feedback['type'], string> = {
 }
 
 export function FeedbackMessage({ feedback }: FeedbackMessageProps) {
+  if (feedback === null) {
+    return null
+  }
+
   return (
     <p
-      className={`mt-3 rounded-xl border px-4 py-3 text-sm font-semibold ${feedbackStyles[feedback.type]}`}
+      className={`mt-3 rounded-xl border px-4 py-3 text-sm font-semibold shadow-sm ${feedbackStyles[feedback.type]}`}
       role="status"
     >
       {feedback.message}

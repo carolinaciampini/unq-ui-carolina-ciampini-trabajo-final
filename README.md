@@ -1,32 +1,56 @@
-# React + TypeScript + Vite
+# Palabras Encadenadas - Trabajo Final UNQ UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Aplicacion desarrollada con React, TypeScript y Vite para la materia Construccion de Interfaces de Usuario.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+La aplicacion permite jugar a Palabras Encadenadas con las siguientes caracteristicas:
 
-## React Compiler
+- **Ingreso de palabras**: El jugador puede ingresar palabras para construir una cadena.
+- **Validacion con diccionario**: Cada palabra se valida usando la API provista por la catedra.
+- **Regla de encadenamiento**: Cada palabra debe empezar con la ultima letra de la palabra anterior.
+- **Control de palabras repetidas**: No se pueden reutilizar palabras dentro de la misma partida.
+- **Sistema de puntuacion**: Cada letra de una palabra valida suma un punto.
+- **Temporizador por turno**: Cada turno dura 15 segundos y se reinicia con cada palabra valida.
+- **Feedback visual**: Se informa si una palabra no existe, ya fue utilizada o no respeta la cadena.
+- **Fin de partida**: Cuando se termina el tiempo, se muestra el puntaje final y la cantidad de palabras validas.
+- **Reinicio de partida**: Se puede iniciar una nueva partida al finalizar.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Instalacion y uso
 
-## Expanding the Oxlint configuration
+1. Clonar el repositorio:
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+git clone <url-del-repositorio>
+cd unq-ui-carolina-ciampini-trabajo-final
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+2. Instalar las dependencias:
+
+```bash
+npm install
+```
+
+3. Ejecutar el proyecto en modo desarrollo:
+
+```bash
+npm run dev
+```
+
+La aplicacion estara disponible en `http://localhost:5173` o en el puerto que indique Vite.
+
+## Tecnologias utilizadas
+
+- React
+- TypeScript
+- Vite
+- TailwindCSS
+- React Icons
+
+## API utilizada
+
+Para validar si una palabra existe en el diccionario espanol se utiliza la API provista por la catedra:
+
+```txt
+https://word-api-hmlg.vercel.app/api/validate?word=<palabra>
+```

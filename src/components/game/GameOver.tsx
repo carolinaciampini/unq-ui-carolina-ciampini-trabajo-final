@@ -9,11 +9,11 @@ type GameOverProps = {
 export function GameOver({ score, wordsCount, onRestart }: GameOverProps) {
   return (
     <section
-      className="my-8 rounded-xl border border-violet-soft bg-[#f8f6fd] px-5 py-6 text-center"
+      className="my-8 rounded-xl border border-teal-soft bg-[#f4f7f6] px-5 py-6 text-center"
       aria-labelledby="game-over-title"
     >
       <HiOutlineTrophy
-        className="mx-auto mb-3 text-4xl text-violet-main"
+        className="mx-auto mb-3 text-4xl text-teal-main"
         aria-hidden="true"
       />
 
@@ -26,21 +26,21 @@ export function GameOver({ score, wordsCount, onRestart }: GameOverProps) {
           <dt className="text-xs font-extrabold uppercase tracking-wide text-[#6c7280]">
             Puntaje final
           </dt>
-          <dd className="mt-1 text-3xl font-black text-violet-main">{score}</dd>
+          <dd className="mt-1 text-3xl font-black text-teal-main">{score}</dd>
         </div>
 
         <div>
           <dt className="text-xs font-extrabold uppercase tracking-wide text-[#6c7280]">
             Palabras
           </dt>
-          <dd className="mt-1 text-3xl font-black text-violet-main">
+          <dd className="mt-1 text-3xl font-black text-teal-main">
             {wordsCount}
           </dd>
         </div>
       </dl>
 
       <button
-        className="inline-flex items-center gap-2 rounded-xl bg-violet-main px-5 py-3 font-black text-white transition hover:bg-violet-dark"
+        className="inline-flex items-center gap-2 rounded-xl bg-teal-main px-5 py-3 font-black text-white transition hover:bg-teal-dark"
         type="button"
         onClick={onRestart}
       >

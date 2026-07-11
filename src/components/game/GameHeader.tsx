@@ -14,12 +14,12 @@ const statusText: Record<GameStatus, string> = {
 export function GameHeader({ status }: GameHeaderProps) {
   return (
     <header className="mb-7 text-center">
-      <p className="mb-4 inline-flex rounded-md bg-violet-soft px-4 py-1 text-xs font-extrabold tracking-[0.16em] text-violet-main">
+      <p className="mb-4 inline-flex rounded-md bg-teal-soft px-4 py-1 text-xs font-extrabold tracking-[0.16em] text-teal-main">
         JUEGO RAPIDO DE PALABRAS
       </p>
 
       <h1 className="flex items-center justify-center gap-2 text-3xl font-black leading-tight text-ink sm:text-4xl">
-        <HiOutlineLink className="text-[1.9rem] text-violet-main" aria-hidden="true" />
+        <HiOutlineLink className="text-[1.9rem] text-teal-main" aria-hidden="true" />
         Palabras Encadenadas
       </h1>
 

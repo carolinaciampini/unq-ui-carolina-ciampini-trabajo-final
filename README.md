@@ -23,7 +23,7 @@ Las palabras se validan contra la API indicada por la catedra. Si una palabra no
 Clonar el repositorio:
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/carolinaciampini/unq-ui-carolina-ciampini-trabajo-final.git
 cd unq-ui-carolina-ciampini-trabajo-final
 ```
 

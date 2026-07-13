@@ -1,54 +1,56 @@
-# Palabras Encadenadas - Trabajo Final UNQ UI
+# Palabras Encadenadas
 
-Aplicacion desarrollada con React, TypeScript y Vite para la materia Construccion de Interfaces de Usuario.
+Trabajo final para la materia Construccion de Interfaces de Usuario.
+
+El proyecto es un juego hecho con React en el que se ingresan palabras para armar una cadena. La primera palabra puede ser cualquiera. A partir de la segunda, cada palabra tiene que empezar con la ultima letra de la palabra anterior.
+
+Las palabras se validan contra la API indicada por la catedra. Si una palabra no existe, ya fue usada o no respeta la cadena, se muestra un mensaje y no se agrega a la partida.
 
 ## Funcionalidades
 
-La aplicacion permite jugar a Palabras Encadenadas con las siguientes caracteristicas:
+- Ingreso de palabras.
+- Validacion de palabras con API.
+- Control de palabras repetidas.
+- Validacion de la regla de encadenamiento.
+- Puntaje acumulado.
+- Temporizador de 15 segundos por turno.
+- Pantalla de fin de partida.
+- Reinicio de partida.
+- Leaderboard local con los mejores puntajes.
 
-- **Ingreso de palabras**: El jugador puede ingresar palabras para construir una cadena.
-- **Validacion con diccionario**: Cada palabra se valida usando la API provista por la materia.
-- **Regla de encadenamiento**: Cada palabra debe empezar con la ultima letra de la palabra anterior.
-- **Control de palabras repetidas**: No se pueden reutilizar palabras dentro de la misma partida.
-- **Sistema de puntuacion**: Cada letra de una palabra valida suma un punto.
-- **Temporizador por turno**: Cada turno dura 15 segundos y se reinicia con cada palabra valida.
-- **Feedback visual**: Se informa si una palabra no existe, ya fue utilizada o no respeta la cadena.
-- **Fin de partida**: Cuando se termina el tiempo, se muestra el puntaje final y la cantidad de palabras validas.
-- **Reinicio de partida**: Se puede iniciar una nueva partida al finalizar.
+## Instalacion
 
-## Instalacion y uso
-
-1. Clonar el repositorio:
+Clonar el repositorio:
 
 ```bash
 git clone <url-del-repositorio>
 cd unq-ui-carolina-ciampini-trabajo-final
 ```
 
-2. Instalar las dependencias:
+Instalar dependencias:
 
 ```bash
 npm install
 ```
 
-3. Ejecutar el proyecto en modo desarrollo:
+Ejecutar el proyecto:
 
 ```bash
 npm run dev
 ```
 
-La aplicacion estara disponible en `http://localhost:5173` o en el puerto que indique Vite.
+La aplicacion estara disponible en http://localhost:5173 o en el puerto que indique Vite.
 
-## Tecnologias utilizadas
+## Tecnologias
 
 - React
 - TypeScript
 - Vite
 - TailwindCSS
 
-## API utilizada
+## API
 
-Para validar si una palabra existe en el diccionario espanol se utiliza la API provista por la materia:
+La validacion de palabras usa el siguiente endpoint:
 
 ```txt
 https://word-api-hmlg.vercel.app/api/validate?word=<palabra>

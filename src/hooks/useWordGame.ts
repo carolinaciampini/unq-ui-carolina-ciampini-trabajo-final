@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
+import {
+  getLeaderboard,
+  saveLeaderboardEntry,
+} from '../services/leaderboardStorage'
 import { validateWordExists } from '../services/wordApi'
-import type { Feedback, GameStatus } from '../types/game'
+import type { Feedback, GameStatus, LeaderboardEntry } from '../types/game'
 import {
   getLastLetter,
   getWordScore,
@@ -17,14 +21,26 @@ export function useWordGame() {
   const [feedback, setFeedback] = useState<Feedback | null>(null)
   const [gameStatus, setGameStatus] = useState<GameStatus>('idle')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [leaderboard, setLeaderboard] = useState<LeaderboardEntry[]>(() =>
+    getLeaderboard(),
+  )
   const [seconds, setSeconds] = useState(TURN_SECONDS)
   const gameStatusRef = useRef(gameStatus)
+  const scoreRef = useRef(0)
+  const wasCurrentGameSavedRef = useRef(false)
+  const currentGameIdRef = useRef(crypto.randomUUID())
+  const wordsRef = useRef<string[]>([])
 
   const score = words.reduce((total, word) => total + getWordScore(word), 0)
 
   useEffect(() => {
     gameStatusRef.current = gameStatus
   }, [gameStatus])
+
+  useEffect(() => {
+    scoreRef.current = score
+    wordsRef.current = words
+  }, [score, words])
 
   useEffect(() => {
     if (gameStatus !== 'playing') {
@@ -36,6 +52,19 @@ export function useWordGame() {
         if (currentSeconds <= 1) {
           window.clearInterval(intervalId)
           setGameStatus('finished')
+
+          if (wordsRef.current.length > 0 && !wasCurrentGameSavedRef.current) {
+            wasCurrentGameSavedRef.current = true
+            const updatedLeaderboard = saveLeaderboardEntry({
+              id: currentGameIdRef.current,
+              score: scoreRef.current,
+              wordsCount: wordsRef.current.length,
+              date: new Date().toISOString(),
+            })
+
+            setLeaderboard(updatedLeaderboard)
+          }
+
           return 0
         }
 
@@ -133,12 +162,15 @@ export function useWordGame() {
     setGameStatus('idle')
     setIsSubmitting(false)
     setSeconds(TURN_SECONDS)
+    wasCurrentGameSavedRef.current = false
+    currentGameIdRef.current = crypto.randomUUID()
   }
 
   return {
     feedback,
     gameStatus,
     isSubmitting,
+    leaderboard,
     restartGame,
     score,
     seconds,

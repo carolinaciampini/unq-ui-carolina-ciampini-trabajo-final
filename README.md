@@ -7,7 +7,7 @@ Aplicacion desarrollada con React, TypeScript y Vite para la materia Construccio
 La aplicacion permite jugar a Palabras Encadenadas con las siguientes caracteristicas:
 
 - **Ingreso de palabras**: El jugador puede ingresar palabras para construir una cadena.
-- **Validacion con diccionario**: Cada palabra se valida usando la API provista por la catedra.
+- **Validacion con diccionario**: Cada palabra se valida usando la API provista por la materia.
 - **Regla de encadenamiento**: Cada palabra debe empezar con la ultima letra de la palabra anterior.
 - **Control de palabras repetidas**: No se pueden reutilizar palabras dentro de la misma partida.
 - **Sistema de puntuacion**: Cada letra de una palabra valida suma un punto.
@@ -45,11 +45,10 @@ La aplicacion estara disponible en `http://localhost:5173` o en el puerto que in
 - TypeScript
 - Vite
 - TailwindCSS
-- React Icons
 
 ## API utilizada
 
-Para validar si una palabra existe en el diccionario espanol se utiliza la API provista por la catedra:
+Para validar si una palabra existe en el diccionario espanol se utiliza la API provista por la materia:
 
 ```txt
 https://word-api-hmlg.vercel.app/api/validate?word=<palabra>

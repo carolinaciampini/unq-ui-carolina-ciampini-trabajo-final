@@ -6,3 +6,10 @@ export type Feedback = {
   type: FeedbackType
   message: string
 }
+
+export type LeaderboardEntry = {
+  id: string
+  score: number
+  wordsCount: number
+  date: string
+}

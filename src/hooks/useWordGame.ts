@@ -15,6 +15,7 @@ import { normalizeWord } from '../utils/normalizeWord'
 
 const TURN_SECONDS = 15
 const FEEDBACK_DURATION = 3000
+const DEFAULT_PLAYER_NAME = 'Jugador anonimo'
 
 export function useWordGame() {
   const [words, setWords] = useState<string[]>([])
@@ -29,6 +30,7 @@ export function useWordGame() {
   const scoreRef = useRef(0)
   const wasCurrentGameSavedRef = useRef(false)
   const currentGameIdRef = useRef(crypto.randomUUID())
+  const playerNameRef = useRef(DEFAULT_PLAYER_NAME)
   const wordsRef = useRef<string[]>([])
 
   const score = words.reduce((total, word) => total + getWordScore(word), 0)
@@ -57,6 +59,7 @@ export function useWordGame() {
             wasCurrentGameSavedRef.current = true
             const updatedLeaderboard = saveLeaderboardEntry({
               id: currentGameIdRef.current,
+              playerName: playerNameRef.current,
               score: scoreRef.current,
               wordsCount: wordsRef.current.length,
               date: new Date().toISOString(),
@@ -87,12 +90,13 @@ export function useWordGame() {
     return () => window.clearTimeout(timeoutId)
   }, [feedback])
 
-  const submitWord = async (word: string) => {
+  const submitWord = async (word: string, playerName: string) => {
     if (gameStatus === 'finished') {
       return false
     }
 
     const normalizedWord = normalizeWord(word)
+    const normalizedPlayerName = playerName.trim() || DEFAULT_PLAYER_NAME
 
     if (normalizedWord.length === 0) {
       setFeedback({
@@ -118,6 +122,10 @@ export function useWordGame() {
         message: `La palabra debe empezar con ${getLastLetter(previousWord ?? '').toUpperCase()}.`,
       })
       return false
+    }
+
+    if (words.length === 0) {
+      playerNameRef.current = normalizedPlayerName
     }
 
     setIsSubmitting(true)
@@ -164,6 +172,7 @@ export function useWordGame() {
     setSeconds(TURN_SECONDS)
     wasCurrentGameSavedRef.current = false
     currentGameIdRef.current = crypto.randomUUID()
+    playerNameRef.current = DEFAULT_PLAYER_NAME
   }
 
   return {

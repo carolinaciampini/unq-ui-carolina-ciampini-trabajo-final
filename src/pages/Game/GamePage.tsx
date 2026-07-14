@@ -23,24 +23,29 @@ export function GamePage() {
 
   return (
     <GameLayout>
-      <GameHeader status={gameStatus} />
-      <GameStats seconds={seconds} score={score} wordsCount={words.length} />
-      {isGameFinished ? (
-        <GameOver
-          score={score}
-          wordsCount={words.length}
-          onRestart={restartGame}
-        />
-      ) : (
-        <WordForm
-          feedback={feedback}
-          isDisabled={isGameFinished}
-          isSubmitting={isSubmitting}
-          onSubmitWord={submitWord}
-        />
-      )}
-      <WordChain words={words} />
-      <Leaderboard entries={leaderboard} />
+        <GameHeader />
+      <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
+        <div>
+          <GameStats seconds={seconds} score={score} wordsCount={words.length} />
+          {isGameFinished ? (
+            <GameOver
+              score={score}
+              wordsCount={words.length}
+              onRestart={restartGame}
+            />
+          ) : (
+            <WordForm
+              feedback={feedback}
+              isDisabled={isGameFinished}
+              isPlayerNameDisabled={gameStatus !== 'idle'}
+              isSubmitting={isSubmitting}
+              onSubmitWord={submitWord}
+            />
+          )}
+          <WordChain words={words} />
+        </div>
+        <Leaderboard entries={leaderboard} />
+      </div>
     </GameLayout>
   )
 }

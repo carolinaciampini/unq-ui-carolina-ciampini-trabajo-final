@@ -9,6 +9,7 @@ export type Feedback = {
 
 export type LeaderboardEntry = {
   id: string
+  playerName: string
   score: number
   wordsCount: number
   date: string

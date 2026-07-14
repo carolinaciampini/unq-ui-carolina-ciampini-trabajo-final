@@ -16,6 +16,15 @@ export default {
       boxShadow: {
         panel: '0 14px 32px rgba(15, 48, 54, 0.08)',
       },
+      keyframes: {
+        wordPop: {
+          '0%': { opacity: '0', transform: 'translateY(8px) scale(0.96)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
+      },
+      animation: {
+        'word-pop': 'wordPop 220ms ease-out both',
+      },
     },
   },
   plugins: [],
